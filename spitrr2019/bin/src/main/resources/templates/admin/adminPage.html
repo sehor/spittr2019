@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Administrator</title>
+</head>
+<body>
+	<h1 align="center">charge in this page!</h1>
+
+	<table align='center' border='1' cellspacing='0' >
+		<tr>
+			<td>Name</td>
+			<td>Password</td>
+			<td>Email</td>
+			<td>Edit</td>
+			<td>Delete</td>
+		</tr>
+
+		<tr th:each="spitter:${spitters}" >
+			<td th:text="${spitter.username}"></td>
+			<td th:text="${spitter.password}"></td>
+			<td th:text="${spitter.email}"></td>
+			<td><a th:href="@{/editSpitter(id=${spitter.spitterId})}">Edit</a></td>
+			<td><a th:href="@{/deleteSpitter(id=${spitter.spitterId})}">Delete</a></td>
+		</tr>
+
+	</table>
+</body>
+</html>

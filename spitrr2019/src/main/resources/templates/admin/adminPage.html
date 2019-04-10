@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
 <title>Administrator</title>
+<meta charset="UTF-8">
+<script type="text/javascript"  src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript"  th:src="@{js/jquery.cookie.js}"></script>
+ <script >
+   var spitters=new Array();
+   var spitter1={"username":"name1","lastName":"p","firstName":"zr","password":"abs123","email":"emai@qq.com"};
+   var spitter2={"username":"name2","lastName":"p2","firstName":"zr2","password":"abs1232","email":"emai2@qq.com"};
+   spitters.push(spitter1);
+   spitters.push(spitter2);
+   
+   $.ajax({
+		   
+		    type: "POST",
+		    url: "http://localhost:8080/admin/addSpitter", 
+		    dataType: 'json',
+		    data: JSON.stringify(spitters),  
+		    success: function(data){  
+		        
+		    },  
+		    error: function(res){  
+		        alert("failed!")
+		    }
+		   
+   });
+
+ </script>
 </head>
 <body>
 	<h1 align="center">charge in this page!</h1>
 
-	<table align='center' border='1' cellspacing='0' >
+
+	<div align="center">
+
+		<form th:action="@{/admin/addSpitter}" method="post"
+			th:object="${spitter}">
+
+			<label>Username:</label> <input type="text" th:field=*{username} /><br>
+			<label>First Name:</label> <input type="text" th:field=*{firstName} /><br>
+			<label>Last Name:</label> <input type="text" th:field=*{lastName} /><br>
+			<label>Password:</label> <input type="text" th:field=*{password} /><br>
+			<label>Email:</label> <input type="text" th:field=*{email} /><br>
+
+			<label>Username:</label> <input type="text" th:field=*{username} /><br>
+			<label>First Name:</label> <input type="text" th:field=*{firstName} /><br>
+			<label>Last Name:</label> <input type="text" th:field=*{lastName} /><br>
+			<label>Password:</label> <input type="text" th:field=*{password} /><br>
+			<label>Email:</label> <input type="text" th:field=*{email} /><br>
+			
+			<input type="submit" value="增加" /><br>
+
+		</form>
+	</div>
+
+
+
+	<table align='center' border='1' cellspacing='0'>
 		<tr>
 			<td>Name</td>
 			<td>Password</td>
@@ -16,12 +66,12 @@
 			<td>Delete</td>
 		</tr>
 
-		<tr th:each="spitter:${spitters}" >
+		<tr th:each="spitter:${spitters}">
 			<td th:text="${spitter.username}"></td>
 			<td th:text="${spitter.password}"></td>
 			<td th:text="${spitter.email}"></td>
-			<td><a th:href="@{/editSpitter(id=${spitter.spitterId})}">Edit</a></td>
-			<td><a th:href="@{/deleteSpitter(id=${spitter.spitterId})}">Delete</a></td>
+			<td><a th:href="@{admin/editSpitter(id=${spitter.spitterId})}">Edit</a></td>
+			<td><a th:href="@{admin/deleteSpitter(id=${spitter.spitterId})}">Delete</a></td>
 		</tr>
 
 	</table>

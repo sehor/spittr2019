@@ -14,15 +14,15 @@ public class Spitter implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="spitter_id")
+	@Column(name="spitterid")
 	private int spitterId;
 
 	private String email;
 
-	@Column(name="first_name")
+	@Column(name="firstname")
 	private String firstName;
 
-	@Column(name="last_name")
+	@Column(name="lastname")
 	private String lastName;
 
 	private String password;
